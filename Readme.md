@@ -1,0 +1,1 @@
+Practice web application for photo gallery made with go.
