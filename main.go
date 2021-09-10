@@ -6,7 +6,7 @@ import (
 )
 
 func handlerFunc(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Site accessed.")
+	w.Header().Set("Content-Type", "text/html")
 	fmt.Fprint(w, "<h1>Welcome to the Go Server.</h1>")
 }
 
