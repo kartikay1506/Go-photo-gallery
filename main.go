@@ -29,6 +29,11 @@ func contact(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "To get in touch, please send an email to <a href=\"mailto:cooperalex512@gmail.com\">cooperalex512@gmail.com</a>")
 }
 
+func faq(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
+	fmt.Fprint(w, "<h1>FAQ Page!</h1><p>Here is a list of some of the frequently asked questions.</p>")
+}
+
 // func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 // 	fmt.Fprint(w, "Welcome!\n")
 // }
@@ -45,5 +50,6 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", home)
 	r.HandleFunc("/contact", contact)
+	r.HandleFunc("/faq", faq)
 	http.ListenAndServe(":4000", r)
 }
