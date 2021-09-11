@@ -34,6 +34,12 @@ func faq(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "<h1>FAQ Page!</h1><p>Here is a list of some of the frequently asked questions.</p>")
 }
 
+func notFound(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
+	w.WriteHeader(http.StatusNotFound)
+	fmt.Fprint(w, "<h1>404, Page not found</h1>")
+}
+
 // func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 // 	fmt.Fprint(w, "Welcome!\n")
 // }
@@ -48,6 +54,7 @@ func main() {
 	// router.GET("/hello/:name", Hello)
 
 	r := mux.NewRouter()
+	r.NotFoundHandler = http.HandlerFunc(notFound)
 	r.HandleFunc("/", home)
 	r.HandleFunc("/contact", contact)
 	r.HandleFunc("/faq", faq)
